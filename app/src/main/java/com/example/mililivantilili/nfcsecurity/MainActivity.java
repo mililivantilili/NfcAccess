@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void readFromIntent(Intent intent) {
-        Log.d(TAG,"Intent ");
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action) || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action) || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action))
         {
-            Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+            Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_ID);
+
             NdefMessage[] msgs = null;
             if (rawMsgs != null)
             {
