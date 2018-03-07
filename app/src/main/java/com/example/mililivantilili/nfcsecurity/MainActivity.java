@@ -57,43 +57,15 @@ public class MainActivity extends AppCompatActivity {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action) || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action) || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action))
         {
-            Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_ID);
+            Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+            byte[] extraID = tagFromIntent.getId();
 
-            NdefMessage[] msgs = null;
-            if (rawMsgs != null)
-            {
-                msgs = new NdefMessage[rawMsgs.length];
-                for (int i = 0; i < rawMsgs.length; i++)
-                {
-                    msgs[i] = (NdefMessage) rawMsgs[i];
-                }
-            }
-            Log.d(TAG,"Intent2 ");
-            buildTagViews(msgs);
+            StringBuilder sb = new StringBuilder();
+            for (byte b : extraID) {
+                sb.append(String.format("%02X", b));
+            };
+            Log.d(TAG,"ID: " + sb.toString());
         }
-    }
-
-    private void buildTagViews(NdefMessage[] msgs) {
-        if (msgs == null || msgs.length == 0){
-            Log.d(TAG,"Null nacten ");
-            return;
-        }
-
-        String text = "";
-//        String tagId = new String(msgs[0].getRecords()[0].getType());
-        byte[] payload = msgs[0].getRecords()[0].getPayload();
-        String textEncoding = ((payload[0] & 128) == 0) ? "UTF-8" : "UTF-16"; // Get the Text Encoding
-        int languageCodeLength = payload[0] & 0063; // Get the Language Code, e.g. "en"
-        // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-
-        try {
-            // Get the Text
-            text = new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
-        } catch (UnsupportedEncodingException e) {
-            Log.e("UnsupportedEncoding", e.toString());
-        }
-
-        Log.d(TAG,"NFC Content: " + text);
     }
 
     @Override
