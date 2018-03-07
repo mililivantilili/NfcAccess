@@ -16,7 +16,8 @@ import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     PendingIntent pendingIntent;
     IntentFilter writeTagFilters[];
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     NfcAdapter nfcAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -45,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
             tagDetected.addCategory(Intent.CATEGORY_DEFAULT);
             writeTagFilters = new IntentFilter[] { tagDetected };*/
             /* Nelze programově zapnout NFC takže tohle otevře nastavení NFC a napíše uživateli, ať ho zapne*/
-            if (!nfcAdapter.isEnabled()) {
+            if (!nfcAdapter.isEnabled())
+            {
                 Toast.makeText(getApplicationContext(), "Please activate NFC and press Back to return to the application!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
             }
@@ -53,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void readFromIntent(Intent intent) {
+    private void readFromIntent(Intent intent)
+    {
         String action = intent.getAction();
         if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action) || NfcAdapter.ACTION_TECH_DISCOVERED.equals(action) || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action))
         {
@@ -69,24 +73,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         nfcAdapter.disableForegroundDispatch(this);
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         // Deaktivace tlačítka zpět
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(Intent intent)
+    {
         Log.d(TAG,"onNewIntent");
         setIntent(intent);
         readFromIntent(intent);
