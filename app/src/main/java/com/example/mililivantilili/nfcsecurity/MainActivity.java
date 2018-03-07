@@ -3,6 +3,7 @@ package com.example.mililivantilili.nfcsecurity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
@@ -12,15 +13,17 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 
 public class MainActivity extends AppCompatActivity
 {
+    public static final String INTENT_USER_ID = "com.example.mililivantilili.nfcsecurity.UseID";
 
     PendingIntent pendingIntent;
-    IntentFilter writeTagFilters[];
+    //IntentFilter writeTagFilters[];
     String TAG = "NfcMain";
     Tag myTag;
     NfcAdapter nfcAdapter;
@@ -68,7 +71,9 @@ public class MainActivity extends AppCompatActivity
             for (byte b : extraID) {
                 sb.append(String.format("%02X", b));
             };
-            Log.d(TAG,"ID: " + sb.toString());
+            String UserID = sb.toString();
+            Log.d(TAG,"ID: " + UserID);
+            logIn(UserID);
         }
     }
 
@@ -101,5 +106,17 @@ public class MainActivity extends AppCompatActivity
         if(NfcAdapter.ACTION_TAG_DISCOVERED.equals(intent.getAction())){
             myTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         }
+    }
+
+    private void logIn(String UserID)
+    {
+        Intent intent = new Intent(MainActivity.this, LogedUserActivity.class);
+
+        intent.putExtra(INTENT_USER_ID, UserID);
+        startActivity(intent);
+    }
+
+    public void BtnAdmin(View view) {
+        logIn("ADMIN");
     }
 }
