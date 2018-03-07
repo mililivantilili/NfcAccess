@@ -3,7 +3,10 @@
     package="com.example.mililivantilili.nfcsecurity">
 
     <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -14,15 +17,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="NFC Security">
-
-
+            android:label="NFC Security"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,8 +33,9 @@
 
         <meta-data
             android:name="android.nfc.action.TECH_DISCOVERED"
-            android:resource="@xml/nfc_tech_filter"/>
+            android:resource="@xml/nfc_tech_filter" />
 
+        <activity android:name=".LogedUserActivity"></activity>
     </application>
 
 </manifest>
