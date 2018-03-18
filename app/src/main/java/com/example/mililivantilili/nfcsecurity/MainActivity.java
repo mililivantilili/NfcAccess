@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Parcelable;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity
         if (nfcAdapter == null)
         {
             // NFC is not available on the device.
-            Log.d(TAG,"NFC is not available, Use phone with NFC");
+            Log.d(TAG, String.valueOf(R.string.NFC_NOT_AVAILABLE));
         }
         else
         {
@@ -52,8 +54,15 @@ public class MainActivity extends AppCompatActivity
             /* Nelze programově zapnout NFC takže tohle otevře nastavení NFC a napíše uživateli, ať ho zapne*/
             if (!nfcAdapter.isEnabled())
             {
-                Toast.makeText(getApplicationContext(), "Please activate NFC and press Back to return to the application!", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
+                Toast.makeText(getApplicationContext(), String.valueOf(R.string.ACTIVE_NFC_AND_RETURN), Toast.LENGTH_LONG).show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
+                }
+                else
+                {
+                    // Snad to jede, nemám to na čem ověřit
+                    startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+                }
             }
         }
 
@@ -68,9 +77,10 @@ public class MainActivity extends AppCompatActivity
             byte[] extraID = tagFromIntent.getId();
 
             StringBuilder sb = new StringBuilder();
-            for (byte b : extraID) {
+            for (byte b : extraID)
+            {
                 sb.append(String.format("%02X", b));
-            };
+            }
             String UserID = sb.toString();
             Log.d(TAG,"ID: " + UserID);
             logIn(UserID);

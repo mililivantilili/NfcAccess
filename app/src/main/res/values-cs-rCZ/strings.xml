@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NfcSecurity</string>
+    <string name="NFC_NOT_AVAILABLE">NFC není k dispozici, použí telefon s NFC</string>
+    <string name="ACTIVE_NFC_AND_RETURN">Zapni, prosím, NFC a vrať se zpět pomocí tlačítka zpět</string>
+    <string name="MAIN_INFORMATION">Vítejte v aplikaci, \n prosím přiložte svůj NFC tag pro přihlášení</string>
+</resources>

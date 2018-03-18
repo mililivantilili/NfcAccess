@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LogedUserActivity extends AppCompatActivity {
+public class LogedUserActivity extends AppCompatActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loged_user);
 
@@ -24,11 +26,14 @@ public class LogedUserActivity extends AppCompatActivity {
 
     }
 
-    public void BtnLogOff(View view) {
+    public void BtnLogOff(View view)
+    {
         finish();
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
+
     }
 }
