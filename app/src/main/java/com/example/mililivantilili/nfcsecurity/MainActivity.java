@@ -18,9 +18,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import java.io.UnsupportedEncodingException;
+import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class MainActivity extends AppCompatActivity implements DbAccessListener
 {
     public static final String INTENT_USER_ID = "com.example.mililivantilili.nfcsecurity.UseID";
 
@@ -75,15 +84,17 @@ public class MainActivity extends AppCompatActivity
         {
             Tag tagFromIntent = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             byte[] extraID = tagFromIntent.getId();
+            DBAccess dbAccess = new DBAccess(this);
 
             StringBuilder sb = new StringBuilder();
             for (byte b : extraID)
             {
                 sb.append(String.format("%02X", b));
             }
-            String UserID = sb.toString();
-            Log.d(TAG,"ID: " + UserID);
-            logIn(UserID);
+            String userID = sb.toString();
+            Log.d(TAG,"ID: " + userID);
+            dbAccess.LogIN(userID);
+            //logIn(UserID);
         }
     }
 
@@ -118,15 +129,52 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void logIn(String UserID)
+    private void logIn(int userID)
     {
         Intent intent = new Intent(MainActivity.this, LogedUserActivity.class);
 
-        intent.putExtra(INTENT_USER_ID, UserID);
+        intent.putExtra(INTENT_USER_ID, userID);
         startActivity(intent);
     }
 
-    public void BtnAdmin(View view) {
-        logIn("ADMIN");
+    public void BtnAdmin(View view)
+    {
+        logIn(1);
+    }
+
+    @Override
+    public void DbAccess_callback(JSONObject json)
+    {
+        if (json != null)
+        {
+            try
+            {
+                String cmd = json.getString("cmd");
+                if (cmd.equals("logOK"))
+                {
+                    int userID = json.getInt("data");
+                    Intent intent = new Intent(MainActivity.this, LogedUserActivity.class);
+
+                    intent.putExtra(INTENT_USER_ID, userID);
+                    startActivity(intent);
+                }
+                else if (cmd.equals("logNOK"))
+                {
+                    Toast.makeText(this, R.string.UNKNOWN_USER, Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(this, R.string.SERVER_CONN_ERROR, Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(this, R.string.SERVER_CONN_ERROR, Toast.LENGTH_SHORT).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(this, R.string.SERVER_CONN_ERROR, Toast.LENGTH_SHORT).show();
+        }
     }
 }
