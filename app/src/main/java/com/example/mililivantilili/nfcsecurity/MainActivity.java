@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements DbAccessListener
             try
             {
                 String cmd = json.getString("cmd");
-                if (cmd.equals("logOK"))
+                if (cmd.equals("LogOK"))
                 {
                     int userID = json.getInt("data");
                     Intent intent = new Intent(MainActivity.this, LogedUserActivity.class);
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements DbAccessListener
                     intent.putExtra(INTENT_USER_ID, userID);
                     startActivity(intent);
                 }
-                else if (cmd.equals("logNOK"))
+                else if (cmd.equals("LogNOK"))
                 {
                     Toast.makeText(this, R.string.UNKNOWN_USER, Toast.LENGTH_SHORT).show();
                 }
