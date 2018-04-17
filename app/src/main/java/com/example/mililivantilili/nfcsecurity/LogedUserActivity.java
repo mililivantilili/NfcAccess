@@ -30,6 +30,7 @@ public class LogedUserActivity extends AppCompatActivity implements DbAccessList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.JAKCYP);
         setContentView(R.layout.activity_loged_user);
 
         TvName = (TextView) findViewById(R.id.TvName);

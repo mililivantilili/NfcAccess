@@ -1,10 +1,13 @@
 package com.example.mililivantilili.nfcsecurity;
 
+import android.app.ActionBar;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
@@ -43,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements DbAccessListener
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        setTitle(R.string.JAKCYP);
+
         setContentView(R.layout.activity_main);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);

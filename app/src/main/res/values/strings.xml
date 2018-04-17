@@ -3,7 +3,13 @@
     <string name="app_name">NfcSecurity</string>
     <string name="NFC_NOT_AVAILABLE">NFC is not available, Use phone with NFC</string>
     <string name="ACTIVE_NFC_AND_RETURN">Please activate NFC and press Back to return to the application!</string>
-    <string name="MAIN_INFORMATION">Welcome here, for log in \n attach your NFC tag, please</string>
+    <string name="MAIN_INFORMATION">Welcome, for log in  attach your NFC tag, please</string>
     <string name="SERVER_CONN_ERROR">Communication with server failed</string>
     <string name="UNKNOWN_USER">This card is not registred in PUJC</string>
+    <string name="SURNAME">Surname:</string>
+    <string name="NAME">Name:</string>
+    <string name="ACCOUNT_ACTIVITY">account activity</string>
+    <string name="BALANCE">Balance</string>
+    <string name="LOG_OUT">Log out</string>
+    <string name="JAKCYP">Peněžní ústav JAKCYP</string>
 </resources>

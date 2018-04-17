@@ -3,7 +3,13 @@
     <string name="app_name">NfcSecurity</string>
     <string name="NFC_NOT_AVAILABLE">NFC není k dispozici, použí telefon s NFC</string>
     <string name="ACTIVE_NFC_AND_RETURN">Zapni, prosím, NFC a vrať se zpět pomocí tlačítka zpět</string>
-    <string name="MAIN_INFORMATION">Vítejte v aplikaci, \n prosím přiložte svůj NFC tag pro přihlášení</string>
+    <string name="MAIN_INFORMATION">Vítejte v aplikaci, prosím přiložte svůj NFC tag pro přihlášení</string>
     <string name="SERVER_CONN_ERROR">Chyba komunikace se serverem</string>
     <string name="UNKNOWN_USER">Tato karta není vedena u PUJC</string>
+    <string name="SURNAME">Příjmení:</string>
+    <string name="NAME">Jméno:</string>
+    <string name="ACCOUNT_ACTIVITY">Pohyb na účtě</string>
+    <string name="BALANCE">Zůstatek</string>
+    <string name="LOG_OUT">Odhlásit</string>
+    <string name="JAKCYP">Peněžní ústav JAKCYP</string>
 </resources>
