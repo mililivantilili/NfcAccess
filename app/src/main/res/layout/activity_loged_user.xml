@@ -37,6 +37,7 @@
         android:layout_marginTop="20dp"
         android:text="Disponibilní zůstatek"
         app:layout_constraintEnd_toEndOf="@+id/TvZustatek"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="@+id/TvZustatek"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/BALANCE" />
