@@ -12,4 +12,5 @@
     <string name="BALANCE">Zůstatek</string>
     <string name="LOG_OUT">Odhlásit</string>
     <string name="JAKCYP">Peněžní ústav JAKCYP</string>
+    <string name="LAST_LOGIN">Poslední přihlášení:</string>
 </resources>

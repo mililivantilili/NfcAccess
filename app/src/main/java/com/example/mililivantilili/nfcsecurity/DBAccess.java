@@ -132,6 +132,7 @@ class User
     public String Jmeno;
     public String Prijmeni;
     public double Zustatek;
+    public String LastLogin;
 
     public User()
     {

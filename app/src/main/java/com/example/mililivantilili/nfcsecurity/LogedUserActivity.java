@@ -24,7 +24,7 @@ import javax.crypto.spec.GCMParameterSpec;
 
 
 public class LogedUserActivity extends AppCompatActivity implements DbAccessListener {
-    TextView TvName, TvSurname, TvZustatek;
+    TextView TvName, TvSurname, TvZustatek, TvLastLogin;
     User logedUser;
 
     @Override
@@ -36,6 +36,7 @@ public class LogedUserActivity extends AppCompatActivity implements DbAccessList
         TvName = (TextView) findViewById(R.id.TvName);
         TvSurname = (TextView) findViewById(R.id.TvSurname);
         TvZustatek = (TextView) findViewById(R.id.TvZustatek);
+        TvLastLogin = (TextView) findViewById(R.id.TvLastLogin);
 
 
         Intent intent = getIntent();
@@ -91,6 +92,7 @@ public class LogedUserActivity extends AppCompatActivity implements DbAccessList
         TvName.setText(logedUser.Jmeno);
         TvSurname.setText(logedUser.Prijmeni);
         TvZustatek.setText(String.valueOf(logedUser.Zustatek) + " kč");
+        TvLastLogin.setText(logedUser.LastLogin);
     }
 
 }
