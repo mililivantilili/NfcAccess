@@ -9,7 +9,7 @@
     <string name="SURNAME">Příjmení:</string>
     <string name="NAME">Jméno:</string>
     <string name="ACCOUNT_ACTIVITY">Pohyb na účtě</string>
-    <string name="BALANCE">Zůstatek</string>
+    <string name="BALANCE">Disponibilní zůstatek</string>
     <string name="LOG_OUT">Odhlásit</string>
     <string name="JAKCYP">Peněžní ústav JAKCYP</string>
     <string name="LAST_LOGIN">Poslední přihlášení:</string>
